@@ -1,20 +1,22 @@
 import { TypeAnimation } from 'react-type-animation';
 
-const HeaderTyping = () => {
+const HeaderTyping = ({ className }: any) => {
     return (
         <TypeAnimation
             sequence={[
-                'AiGen dapat Melihat Saham',
-                1000,
-                'AiGen dapat Memprediksi Saham',
-                1000,
-                'AiGen dapat Merekomendasikan Saham',
-                1000,
+                'AiGen',
+                3000,
+                'AiGen Dapat Membantu Anda Dalam Melihat Saham',
+                2000,
+                'AiGen Dapat Membantu Anda Dalam Memprediksi Saham',
+                2000,
+                'AiGen Dapat Membantu Anda Dalam Merekomendasikan Saham',
+                2000,
             ]}
             wrapper="span"
-            speed={50}
+            speed={16}
             repeat={Infinity}
-            className='inline-block text-6xl font-bold leading-snug'
+            className={className}
         />
     );
 };

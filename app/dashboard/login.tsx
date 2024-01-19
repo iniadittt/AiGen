@@ -33,9 +33,9 @@ const Login = () => {
             <div className='h-full flex flex-row gap-12 mx-auto'>
                 <div className='w-7/12 h-full py-8 flex flex-col gap-48 justify-between px-12'>
                     <h1 className='font-bold text-slate-200 text-4xl'>AiGen</h1>
-                    <div className='h-full flex flex-col justify-center pb-52'>
-                        <p className='text-4xl text-slate-200 leading-tight'>
-                            <HeaderTyping />
+                    <div className='h-full flex flex-col justify-center pb-64'>
+                        <p className='text-slate-200 leading-tight'>
+                            <HeaderTyping className='inline-block text-5xl font-bold leading-snug'/>
                         </p>
                     </div>
                 </div>

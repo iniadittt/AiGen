@@ -3,17 +3,21 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { UserAuth } from "@/app/context/AuthContext";
-
 import { RxDashboard } from "react-icons/rx";
 
-
-
-import Link from 'next/link'
-
+import Index from './index'
 
 
 const Dashboard = () => {
+
     const { user, logOut } = UserAuth();
+
+    const [menu, setMenu] = useState<any[]>([
+        { active: true, render: <Index user={user}/>, nama: 'Dashboard 1', icon: <RxDashboard key="1" className="my-auto"/> },
+        { active: false, render: <Index user={user}/>, nama: 'Dashboard 2', icon: <RxDashboard key="2" className="my-auto"/> },
+        { active: false, render: <Index user={user}/>, nama: 'Dashboard 3', icon: <RxDashboard key="3" className="my-auto"/> },
+        { active: false, render: <Index user={user}/>, nama: 'Dashboard 4', icon: <RxDashboard key="4" className="my-auto"/> },
+    ])
 
     const signOutWithGoogle = async () => {
         try {
@@ -23,6 +27,24 @@ const Dashboard = () => {
         }
     };
     
+    const handleChangeMenu = (event: any): void => {
+        event.preventDefault()
+        const updatedMenu = menu.map((menuItem) => {
+            if (menuItem.nama === event.target.id) {
+                return {
+                    ...menuItem,
+                    active: true
+                };
+            }else{
+                return {
+                    ...menuItem,
+                    active: false
+                };
+            }
+        });
+        setMenu(updatedMenu);
+    }
+
     return (
         <div className="w-full h-screen flex flex-col bg-slate-100">
             <nav className="w-full bg-blue-900 py-3 px-8 flex flex-row justify-between">
@@ -30,17 +52,41 @@ const Dashboard = () => {
                 <button onClick={signOutWithGoogle} className="text-slate-200 font-medium text-sm hover:underline">Logout</button>
             </nav>
             <div className="w-full h-full flex flex-row gap-8">
-                <ul className="w-1/6 h-full p-4 overflow-auto bg-white shadow-sm rounded-md flex flex-col gap-4">
-                    <li className="list-none flex flex-row gap-5 px-4 py-2 rounded-md hover:bg-blue-700">
-                        <RxDashboard width={32} height={32} color="black hover:white" className="my-auto"/>
-                        <Link href="/dashboard" className="my-auto text-md font-medium text-slate-700 hover:text-slate-100">Dashboard</Link>
-                    </li>
+                <ul className="w-1/6 h-full p-4 overflow-auto bg-white shadow-sm rounded-md flex flex-col gap-2">
+                    {
+                    menu.map((item: any, index: number) => {
+                        return item.active ? 
+                        (
+                            <div
+                                id={item.nama}
+                                key={index}
+                                onClick={handleChangeMenu}
+                                className="cursor-pointer text-md font-medium flex flex-row gap-4 px-4 py-2 rounded-md bg-blue-700 text-slate-100"
+                            >
+                                {item.icon}{item.nama}
+                            </div>
+                        ) : (
+                            <div
+                                id={item.nama}
+                                key={index}
+                                onClick={handleChangeMenu}
+                                className="cursor-pointer text-md font-medium flex flex-row gap-4 px-4 py-2 rounded-md text-slate-700 hover:bg-blue-700 hover:text-slate-100"
+                            >
+                                {item.icon}{item.nama}
+                            </div>
+                        );
+                    })
+                }
                 </ul>
                 <div className="w-5/6 overflow-auto pt-8">
                     <div className="w-full h-full pr-8">
-                        <div className="w-full bg-blue-900 p-6 text-slate-200 rounded-md shadow-md">
-                            <p className="text-2xl">Welcome, {user.displayName}</p>
-                        </div>
+                        {
+                            menu.map((item: any, index: number) => {
+                                if (item.active) {
+                                    return item.render;
+                                }
+                            })
+                        }
                     </div>
                 </div>
             </div>

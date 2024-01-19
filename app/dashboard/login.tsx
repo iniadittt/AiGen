@@ -30,7 +30,6 @@ const Login = () => {
 
     return (
         <div className='w-full h-screen bg-blue-700'>
-
             <div className='h-full flex flex-row gap-12 mx-auto'>
                 <div className='w-7/12 h-full py-8 flex flex-col gap-48 justify-between px-12'>
                     <h1 className='font-bold text-slate-200 text-4xl'>AiGen</h1>
@@ -40,7 +39,6 @@ const Login = () => {
                         </p>
                     </div>
                 </div>
-
                 <div className='w-5/12 h-full px-8 bg-slate-200 flex flex-col justify-center gap-6'>
                     <h1 className='text-gray-700 font-bold text-3xl text-center'>Get Started</h1>
                     <ButtonLogin action={signInWithGoogle}>

@@ -4,13 +4,13 @@ const HeaderTyping = ({ className }: any) => {
     return (
         <TypeAnimation
             sequence={[
-                'AiGen',
+                'Connect',
                 3000,
-                'AiGen Dapat Membantu Anda Dalam Melihat Saham',
+                'Connect Dengan Keluarga',
                 2000,
-                'AiGen Dapat Membantu Anda Dalam Memprediksi Saham',
+                'Connect Dengan Sahabat Atau Teman',
                 2000,
-                'AiGen Dapat Membantu Anda Dalam Merekomendasikan Saham',
+                'Connect Dengan Orang Disekitarmu',
                 2000,
             ]}
             wrapper="span"

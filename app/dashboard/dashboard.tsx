@@ -6,6 +6,7 @@ import { UserAuth } from "@/app/context/AuthContext";
 import { RxDashboard } from "react-icons/rx";
 import Index from './index'
 import Image from "next/image";
+import Link from 'next/link'
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
@@ -17,8 +18,6 @@ const Dashboard = () => {
     const [menu, setMenu] = useState<any[]>([
         { active: true, render: <Index user={user} />, nama: 'Dashboard', icon: <RxDashboard key="1" className="my-auto" /> },
         { active: false, render: <Index user={user} />, nama: 'Dashboard 2', icon: <RxDashboard key="2" className="my-auto" /> },
-        { active: false, render: <Index user={user} />, nama: 'Dashboard 3', icon: <RxDashboard key="3" className="my-auto" /> },
-        { active: false, render: <Index user={user} />, nama: 'Dashboard 4', icon: <RxDashboard key="4" className="my-auto" /> },
     ])
 
     const signOutWithGoogle = async () => {
@@ -52,13 +51,14 @@ const Dashboard = () => {
     }
 
     return (
-        <div className="w-full h-screen flex flex-col bg-slate-100">
+        <div className="w-full h-screen overflow-hidden flex flex-col bg-slate-100">
             <nav className="w-full gap-8 flex flex-row bg-white border-b">
                 <div className="w-[13%] border-r h-full flex justify-center">
-                    <h1 className="text-gray-700 font-bold text-2xl inline-flex items-center text-center">AiGen</h1>
+                    <h1 className="text-gray-700 font-bold text-2xl inline-flex items-center text-center">
+                        <Link href="/dashboard">Connect</Link>
+                    </h1>
                 </div>
                 <div className="w-[87%] flex justify-end pr-8 py-2 gap-8">
-
                     <Menu as="div" className="relative inline-block text-left h-full">
                         <div className="inline-flex items-center justify-center w-full h-full">
                             <Menu.Button className="flex flex-row gap-2 items-center text-sm font-semibold text-gray-700">
@@ -67,7 +67,6 @@ const Dashboard = () => {
                                 <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-700" aria-hidden="true" />
                             </Menu.Button>
                         </div>
-
                         <Transition
                             as={Fragment}
                             enter="transition ease-out duration-100"
@@ -96,9 +95,8 @@ const Dashboard = () => {
                     </Menu>
                 </div>
             </nav>
-
-            <div className="w-full h-full flex flex-row gap-8">
-                <div className="w-[13%] h-full overflow-auto bg-white shadow-sm flex flex-col border-r pt-8">
+            <div className="w-full h-full flex flex-row gap-6">
+                <div className="w-[13%] overflow-auto bg-white shadow-sm flex flex-col border-r pt-8">
                     {
                         menu.map((item: any, index: number) => {
                             return item.active ?
@@ -124,8 +122,7 @@ const Dashboard = () => {
                         })
                     }
                 </div>
-                <div className="w-[87%] overflow-auto pt-8">
-                    <div className="w-full h-full pr-8">
+                <div className="w-[87%] overflow-auto h-full pt-6 pr-4">
                         {
                             menu.map((item: any) => {
                                 if (item.active) {
@@ -133,7 +130,6 @@ const Dashboard = () => {
                                 }
                             })
                         }
-                    </div>
                 </div>
             </div>
         </div>

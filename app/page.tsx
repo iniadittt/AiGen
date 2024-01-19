@@ -14,7 +14,7 @@ const Home = () => {
       <div className="absolute z-50 w-full py-3 shadow-inherit">
         <nav className='container mx-auto flex flex-row justify-between'>
           <h1 className='text-2xl my-auto font-bold text-slate-200'>AiGen</h1>
-          <Link href='/dashboard' className='px-7 py-2 rounded-full font-bold text-sm text-slate-200 bg-blue-700'>Login</Link>
+          <Link href='/dashboard' className='px-7 py-2 rounded-full font-bold text-sm text-slate-200 bg-blue-600'>Login</Link>
         </nav>
       </div>
       <div className="w-full relative flex flex-col">
